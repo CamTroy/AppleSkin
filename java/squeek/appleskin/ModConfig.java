@@ -89,6 +89,12 @@ public class ModConfig
 	private static final String MAX_HUD_OVERLAY_FLASH_ALPHA_COMMENT =
 		"Alpha value of the flashing icons at their most visible point (1.0 = fully opaque, 0.0 = fully transparent)";
 
+    public static final ForgeConfigSpec.ConfigValue<Double> HUD_ALPHA_FLASH_SPEED;
+    public static double HUD_ALPHA_FLASH_SPEED_DEFAULT = 0.125D;
+    private static final String HUD_ALPHA_FLASH_SPEED_NAME = "hudAlphaFlashSpeed";
+    private static final String HUD_ALPHA_FLASH_SPEED_COMMENT =
+        "Rate at which the flashing icons will fade in and out, default is 0.125 (0.05 = slowest, 0.95 = fastest, 0.125 = default)";
+
 	static
 	{
 		BUILDER.push(CATEGORY_CLIENT);
@@ -122,6 +128,9 @@ public class ModConfig
 		MAX_HUD_OVERLAY_FLASH_ALPHA = BUILDER
 			.comment(MAX_HUD_OVERLAY_FLASH_ALPHA_COMMENT)
 			.defineInRange(MAX_HUD_OVERLAY_FLASH_ALPHA_NAME, MAX_HUD_OVERLAY_FLASH_ALPHA_DEFAULT, 0D, 1D);
+        HUD_ALPHA_FLASH_SPEED = BUILDER
+            .comment(HUD_ALPHA_FLASH_SPEED_COMMENT)
+            .defineInRange(HUD_ALPHA_FLASH_SPEED_NAME, HUD_ALPHA_FLASH_SPEED_DEFAULT, 0.05D, 0.95D);
 		BUILDER.pop();
 	}
 

@@ -396,16 +396,18 @@ public class HUDOverlayHandler
 		if (event.phase != TickEvent.Phase.END)
 			return;
 
-		unclampedFlashAlpha += alphaDir * 0.125f;
-		if (unclampedFlashAlpha >= 1.5f)
-		{
-			alphaDir = -1;
-		}
-		else if (unclampedFlashAlpha <= -0.5f)
-		{
-			alphaDir = 1;
-		}
-		flashAlpha = Math.max(0F, Math.min(1F, unclampedFlashAlpha)) * Math.max(0F, Math.min(1F, ModConfig.MAX_HUD_OVERLAY_FLASH_ALPHA.get().floatValue()));
+        // 0.125f is the default that changes how fast the flash fades in and out
+        unclampedFlashAlpha += alphaDir * ModConfig.HUD_ALPHA_FLASH_SPEED.get().floatValue();
+        if (unclampedFlashAlpha >= 1.5f)
+        {
+            alphaDir = -1;
+        }
+        else if (unclampedFlashAlpha <= -0.5f)
+        {
+            alphaDir = 1;
+        }
+
+        flashAlpha = Math.max(0F, Math.min(1F, unclampedFlashAlpha)) * Math.max(0F, Math.min(1F, ModConfig.MAX_HUD_OVERLAY_FLASH_ALPHA.get().floatValue()));
 	}
 
 	public void resetFlash()
