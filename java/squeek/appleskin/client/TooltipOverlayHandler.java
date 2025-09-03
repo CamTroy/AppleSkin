@@ -136,6 +136,7 @@ public class TooltipOverlayHandler
 
 		private int saturationBars;
 		private String saturationBarsText;
+        private boolean saturationBarsCompressed = false;
 
 		private String tooltip;
 
@@ -160,9 +161,10 @@ public class TooltipOverlayHandler
 			saturationBars = (int) Math.ceil(Math.abs(biggestSaturationIncrement) / 2f);
 			if (saturationBars > 10 || saturationBars == 0)
 			{
-				saturationBarsText = "x" + ((biggestSaturationIncrement < 0 ? -1 : 1) * saturationBars);
-				saturationBars = 1;
-			}
+				saturationBarsCompressed = true;
+			} else {
+                saturationBarsCompressed = false;
+            }
 		}
 
 		String getTooltip()
@@ -351,8 +353,11 @@ public class TooltipOverlayHandler
 		float modifiedSaturationIncrement = modifiedFood.getSaturationIncrement();
 		float absModifiedSaturationIncrement = Math.abs(modifiedSaturationIncrement);
 
+        // Spacing
+        int barSpacing = foodOverlay.saturationBarsCompressed ? 3 : 7;
+
 		// Render from right to left so that the icons 'face' the right way
-		x += (foodOverlay.saturationBars - 1) * 7;
+		x += (foodOverlay.saturationBars - 1) * barSpacing;
 
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		mc.getTextureManager().bindTexture(modIcons);
@@ -369,7 +374,7 @@ public class TooltipOverlayHandler
 			if (shouldBeFaded)
 				RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-			x -= 7;
+			x -= barSpacing;
 		}
 		if (foodOverlay.saturationBarsText != null)
 		{
