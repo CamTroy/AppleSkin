@@ -159,10 +159,13 @@ public class TooltipOverlayHandler
 			}
 
 			saturationBars = (int) Math.ceil(Math.abs(biggestSaturationIncrement) / 2f);
-			if (saturationBars > 10 || saturationBars == 0)
+			if (saturationBars > 10)
 			{
 				saturationBarsCompressed = true;
-			} else {
+			} else if (saturationBars == 0) {
+                saturationBarsText = "x" + (0);
+                saturationBars = 1;
+            } else {
                 saturationBarsCompressed = false;
             }
 		}
