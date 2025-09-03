@@ -96,10 +96,3 @@ runtimeOnly fg.deobf("squeek.appleskin:appleskin-forge:<version>")
 ```
 
 while replacing `<version>` as mentioned above.
-
---- 
-
-This fork was made to complete two unresolved issues in the original's repository. 
-https://github.com/squeek502/AppleSkin/issues/318
-https://github.com/squeek502/AppleSkin/issues/157
----
